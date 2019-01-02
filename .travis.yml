@@ -8,3 +8,5 @@ cache:
     - node_modules
 services:
   - mongodb
+install:
+  - npm install --no-save eslint
