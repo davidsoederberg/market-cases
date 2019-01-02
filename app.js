@@ -1,9 +1,21 @@
+// Load env variables
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+const mongoose = require('mongoose');
+
+// Connect to database
+mongoose.connect(process.env.DB, { useNewUrlParser: true, dbName: 'development' }).then(
+  () => { console.log('Database connection established'); },
+  (err) => { console.log(err); },
+);
 
 const app = express();
 

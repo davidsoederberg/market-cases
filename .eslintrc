@@ -6,6 +6,12 @@
     "mocha": true
   },
   "plugins": [
-    "json"
-  ]
+    "json",
+    "mocha",
+    "chai-expect"
+  ],
+  "rules": {
+    "no-use-before-define": "off",
+    "global-require": "off"
+  }
 }
