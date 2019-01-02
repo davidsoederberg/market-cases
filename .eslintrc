@@ -12,7 +12,6 @@
   ],
   "rules": {
     "no-use-before-define": "off",
-    "global-require": "off",
-    "no-console": "off"
+    "global-require": "off"
   }
 }
