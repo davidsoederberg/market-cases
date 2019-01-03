@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const securitiesSchema = require('./securities');
 
 const { Schema } = mongoose;
 
@@ -8,10 +7,19 @@ const user = new Schema({
     type: String,
     required: true,
   },
-  cases: [securitiesSchema.schema],
+  cases: [{
+    id: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Securities',
+    },
+    long: {
+      type: Boolean,
+      default: true,
+    },
+  }],
   index: {
     type: Number,
-    default: 0,
+    default: 100,
   },
 });
 

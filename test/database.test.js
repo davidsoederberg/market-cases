@@ -62,19 +62,19 @@ describe('database and models', () => {
       });
     });
 
-    it('should be valied if name is not empty', (done) => {
+    it('should be valid if name is not empty', (done) => {
       const newUser = new User({ name: 'David' });
       newUser.validate((err) => {
         expect(err).to.be.null;
         done();
       });
     });
-    it('should return zero as default', (done) => {
+    it('should return 100 as default', (done) => {
       const David = new User({ name: 'David' });
 
       David.save()
         .then(() => {
-          expect(David.index).to.be.equal(0);
+          expect(David.index).to.be.equal(100);
           done();
         });
     });
@@ -109,7 +109,7 @@ describe('database and models', () => {
         done();
       });
     });
-    it('should be valied if name, type, startingPrice is not empty', (done) => {
+    it('should be valid if name, type, startingPrice is not empty', (done) => {
       const newSec = new Security({ name: 'Gold' });
       newSec.startingPrice = 100;
       newSec.type = 2;
