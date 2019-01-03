@@ -90,7 +90,4 @@ describe('api-route testing', () => {
         });
     });
   });
-  describe('POST /user', () => {
-    it('should ')
-  });
 });
