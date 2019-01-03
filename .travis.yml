@@ -9,4 +9,4 @@ cache:
 services:
   - mongodb
 install:
-  - npm install --no-save eslint
+  - npm install --no-save eslint chai-http
