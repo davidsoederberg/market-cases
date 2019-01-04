@@ -1,13 +1,15 @@
+const debug = require('debug')('b-rscase:userController.js');
+const chalk = require('chalk');
 const User = require('../../models/user');
 const Securities = require('../../models/securities');
 
 exports.apiGet = (req, res) => {
   User.find({}, (error, docs) => {
     if (error) {
-      console.log(error);
+      debug(chalk.red(error));
       res.status(400).end();
     } else {
-      console.log(docs);
+      debug('%o', docs);
       res.send(docs);
     }
   });
@@ -16,10 +18,10 @@ exports.apiGet = (req, res) => {
 exports.apiGetOne = (req, res) => {
   User.findOne({ _id: req.params.id }, (error, doc) => {
     if (error) {
-      console.log(error);
+      debug(chalk.red(error));
       res.status(400).end();
     } else {
-      console.log(doc);
+      debug('%o', doc);
       res.send(doc);
     }
   });
@@ -31,10 +33,10 @@ exports.apiPost = (req, res) => {
 
   newUser.save((error, doc) => {
     if (error) {
-      console.log(error);
+      debug(chalk.red(error));
       res.status(400).end();
     } else {
-      console.log(doc);
+      debug('%o', doc);
       res.send(doc);
     }
   });
@@ -45,10 +47,10 @@ exports.apiUpdateIndex = (req, res) => {
     User.findOneAndUpdate({ _id: req.params.id },
       { $set: { index: req.body.index } }, { upsert: true, new: true }, (error, doc) => {
         if (error) {
-          console.log(error);
+          debug(chalk.red(error));
           res.status(400).end();
         } else {
-          console.log(doc);
+          debug('%o', doc);
           res.send(doc);
         }
       });
@@ -60,16 +62,16 @@ exports.apiUpdateIndex = (req, res) => {
 exports.apiUpdateCases = (req, res) => {
   Securities.findOne({ _id: req.body.caseID }, (error, sec) => {
     if (error) {
-      console.log(error);
+      debug(chalk.red(error));
       res.status(400).end();
     } else {
       User.findOneAndUpdate({ _id: req.params.id },
         { $push: { cases: sec } }, { upsert: true, new: true }, (err, doc) => {
           if (err) {
-            console.log(err);
+            debug(chalk.red(error));
             res.status(400).end();
           } else {
-            console.log(doc);
+            debug('%o', doc);
             res.send(doc);
           }
         });

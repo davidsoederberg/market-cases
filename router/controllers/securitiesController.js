@@ -1,12 +1,14 @@
+const debug = require('debug')('b-rscase:securitiesController.js');
+const chalk = require('chalk');
 const Securities = require('../../models/securities');
 
 exports.apiGet = (req, res) => {
   Securities.find({}, (error, docs) => {
     if (error) {
-      console.log(error);
+      debug(chalk.red(error));
       res.end();
     } else {
-      console.log(docs);
+      debug('%o', docs);
       res.send(docs);
     }
   });
@@ -15,10 +17,10 @@ exports.apiGet = (req, res) => {
 exports.apiGetOne = (req, res) => {
   Securities.findOne({ _id: req.params.id }, (error, doc) => {
     if (error) {
-      console.log(error);
+      debug(chalk.red(error));
       res.end();
     } else {
-      console.log(doc);
+      debug('%o', doc);
       res.send(doc);
     }
   });
@@ -31,10 +33,10 @@ exports.apiPost = (req, res) => {
   newSec.startingPrice = req.body.startingPrice;
   newSec.save((error, doc) => {
     if (error) {
-      console.log(error);
+      debug(chalk.red(error));
       res.end();
     } else {
-      console.log(doc);
+      debug('%o', doc);
       res.end();
     }
   });
@@ -46,12 +48,12 @@ exports.apiUpdateNewPrice = (req, res) => {
   newPrice.date = `${date.getFullYear()} ${date.getMonth()} ${date.getDate()}`;
   newPrice.price = req.body.price;
   Securities.findOneAndUpdate({ _id: req.params.id },
-    { $push: { prices: newPrice } }, { upsert: true, new: true }, (err, doc) => {
-      if (err) {
-        console.log(err);
+    { $push: { prices: newPrice } }, { upsert: true, new: true }, (error, doc) => {
+      if (error) {
+        debug(chalk.red(error));
         res.end();
       } else {
-        console.log(doc);
+        debug('%o', doc);
         res.end();
       }
     });

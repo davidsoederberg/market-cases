@@ -4,6 +4,8 @@
 const chai = require('chai');
 const chatHttp = require('chai-http');
 const mongoose = require('mongoose');
+const debug = require('debug')('b-rscase:test:api.test.js');
+const chalk = require('chalk');
 const User = require('../models/user');
 const Security = require('../models/securities');
 const server = require('../bin/www');
@@ -16,7 +18,8 @@ before((done) => {
   mongoose.connection
     .once('open', () => { done(); })
     .on('error', (error) => {
-      console.warn('Error', error);
+      debug(chalk.red(error));
+      done(error);
     });
 });
 
