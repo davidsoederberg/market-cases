@@ -3,19 +3,25 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
+const debug = require('debug')('b-rscase:app.js');
+const chalk = require('chalk');
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
 const mongoose = require('mongoose');
 
-// Connect to database
-mongoose.connect(process.env.DB, { useNewUrlParser: true, dbName: 'development' }).then(
-  () => { console.log('Database connection established'); },
-  (err) => { console.log(err); },
-);
+const api = require('./router/routes/api');
+
+
+if (process.env.NODE_ENV !== 'test') {
+  // Connect to database
+  mongoose.connect(process.env.DB, { useNewUrlParser: true, dbName: 'development' }).then(
+    () => { debug(chalk.green('Database connection established')); },
+    (err) => { debug(chalk.red(err)); },
+  );
+}
 
 const app = express();
 
@@ -28,6 +34,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

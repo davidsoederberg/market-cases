@@ -21,6 +21,7 @@ describe('service tests', () => {
     it('should return error because abc123/xyz does not exist', async () => {
       try {
         await currencyRate.currencyRate('abc123', 'xyz');
+        expect(true).to.be.false;
       } catch (err) {
         expect(err).to.exist;
         expect(err.message).to.be.equal('Incorrect currency pair');
@@ -39,6 +40,7 @@ describe('service tests', () => {
     it('should return error because xyz.st does not exist', async () => {
       try {
         await stockPrice.realTimeSharePrice('xyz.st');
+        expect(true).to.be.false;
       } catch (err) {
         expect(err).to.exist;
       }
