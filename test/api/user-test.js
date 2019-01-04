@@ -4,11 +4,11 @@
 const chai = require('chai');
 const chatHttp = require('chai-http');
 const mongoose = require('mongoose');
-const debug = require('debug')('b-rscase:test:api.test.js');
+const debug = require('debug')('b-rscase:test:user-test.js');
 const chalk = require('chalk');
-const User = require('../models/user');
-const Security = require('../models/securities');
-const server = require('../bin/www');
+const User = require('../../models/user');
+const Security = require('../../models/securities');
+const server = require('../../bin/www');
 
 chai.use(chatHttp);
 const { expect } = chai;
@@ -41,7 +41,7 @@ after((done) => {
   });
 });
 
-describe('api-route testing', () => {
+describe('api-user-route testing', () => {
   describe('GET /user', () => {
     it('should return length 1', (done) => {
       const newUser = new User({ name: 'David' });

@@ -18,7 +18,7 @@ exports.apiGetOne = (req, res) => {
   Securities.findOne({ _id: req.params.id }, (error, doc) => {
     if (error) {
       debug(chalk.red(error));
-      res.end();
+      res.status(400).end();
     } else {
       debug('%o', doc);
       res.send(doc);
@@ -34,27 +34,32 @@ exports.apiPost = (req, res) => {
   newSec.save((error, doc) => {
     if (error) {
       debug(chalk.red(error));
-      res.end();
+      res.status(400).end();
     } else {
       debug('%o', doc);
-      res.end();
+      res.send(doc);
     }
   });
 };
 
 exports.apiUpdateNewPrice = (req, res) => {
-  const newPrice = {};
-  const date = new Date();
-  newPrice.date = `${date.getFullYear()} ${date.getMonth()} ${date.getDate()}`;
-  newPrice.price = req.body.price;
-  Securities.findOneAndUpdate({ _id: req.params.id },
-    { $push: { prices: newPrice } }, { upsert: true, new: true }, (error, doc) => {
-      if (error) {
-        debug(chalk.red(error));
-        res.end();
-      } else {
-        debug('%o', doc);
-        res.end();
-      }
-    });
+  if (req.body.price) {
+    const newPrice = {};
+    const date = new Date();
+    newPrice.date = `${date.getFullYear()} ${date.getMonth()} ${date.getDate()}`;
+    newPrice.price = req.body.price;
+    Securities.findOneAndUpdate({ _id: req.params.id },
+      { $push: { prices: newPrice } }, { upsert: true, new: true }, (error, doc) => {
+        if (error) {
+          debug(chalk.red(error));
+          res.status(400).end();
+        } else {
+          debug('%o', doc);
+          res.send(doc);
+        }
+      });
+  } else {
+    debug(chalk.red('No price provided'));
+    res.status(400).end();
+  }
 };

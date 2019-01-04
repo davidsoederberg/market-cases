@@ -6,7 +6,7 @@
     "start": "DEBUG=b-rscase:* node ./bin/www",
     "lint": "eslint . --ext .js --ext .json",
     "pretest": "npm run lint",
-    "test": "DEBUG=b-rscase:test: NODE_ENV=test mocha --timeout 5000 --exit"
+    "test": "DEBUG=b-rscase:test: NODE_ENV=test mocha --timeout 5000 --exit --recursive"
   },
   "dependencies": {
     "chalk": "^2.4.1",
