@@ -8,7 +8,6 @@ const currencyRate = require('../service/currency_rate');
 const stockPrice = require('../service/stock_price');
 const goldPrice = require('../service/gold_price');
 
-
 describe('service tests', () => {
   describe('currency-rate tests', () => {
     it('should return a value because USD/SEK exists', async () => {
