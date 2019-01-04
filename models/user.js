@@ -20,6 +20,7 @@ const user = new Schema({
   index: {
     type: Number,
     default: 100,
+    required: true,
   },
 });
 

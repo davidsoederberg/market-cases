@@ -35,38 +35,42 @@ exports.apiPost = (req, res) => {
       res.status(400).end();
     } else {
       console.log(doc);
-      res.end();
+      res.send(doc);
     }
   });
 };
 
 exports.apiUpdateIndex = (req, res) => {
-  User.findOneAndUpdate({ _id: req.params.id },
-    { $set: { index: req.body.index } }, { upsert: true, new: true }, (error, doc) => {
-      if (error) {
-        console.log(error);
-        res.end();
-      } else {
-        console.log(doc);
-        res.end();
-      }
-    });
+  if (req.body.index) {
+    User.findOneAndUpdate({ _id: req.params.id },
+      { $set: { index: req.body.index } }, { upsert: true, new: true }, (error, doc) => {
+        if (error) {
+          console.log(error);
+          res.status(400).end();
+        } else {
+          console.log(doc);
+          res.send(doc);
+        }
+      });
+  } else {
+    res.status(400).end();
+  }
 };
 
 exports.apiUpdateCases = (req, res) => {
-  Securities.findOne({ _id: req.body.case }, (error, sec) => {
+  Securities.findOne({ _id: req.body.caseID }, (error, sec) => {
     if (error) {
       console.log(error);
-      res.end();
+      res.status(400).end();
     } else {
       User.findOneAndUpdate({ _id: req.params.id },
         { $push: { cases: sec } }, { upsert: true, new: true }, (err, doc) => {
           if (err) {
             console.log(err);
-            res.end();
+            res.status(400).end();
           } else {
             console.log(doc);
-            res.end();
+            res.send(doc);
           }
         });
     }

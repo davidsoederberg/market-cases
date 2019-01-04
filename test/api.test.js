@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-expressions */
+/* eslint no-underscore-dangle: ["error", { "allow": ["_id"] }] */
 
 const chai = require('chai');
 const chatHttp = require('chai-http');
 const mongoose = require('mongoose');
 const User = require('../models/user');
-// const Security = require('../models/securities');
+const Security = require('../models/securities');
 const server = require('../bin/www');
 
 chai.use(chatHttp);
@@ -86,6 +87,128 @@ describe('api-route testing', () => {
               expect(res).to.be.json;
               expect(res.body.name).to.be.equal('David');
               done();
+            });
+        });
+    });
+  });
+  describe('POST /user', () => {
+    it('should return status 200 because name is provided', (done) => {
+      chai.request(server)
+        .post('/api/user')
+        .send({ name: 'David' })
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res).to.be.json;
+          expect(res.body.name).to.be.equal('David');
+          expect(res).to.be.status(200);
+          done();
+        });
+    });
+    it('should return status 400 because name is not provided', (done) => {
+      chai.request(server)
+        .post('/api/user')
+        .send({})
+        .end((err, res) => {
+          expect(res).to.be.status(400);
+          done();
+        });
+    });
+  });
+  describe('PUT /user/index/:id', () => {
+    it('should return status 200 because index is provided', (done) => {
+      const newUser = new User({ name: 'David' });
+      newUser.save()
+        .then(() => {
+          expect(newUser.isNew).to.be.false;
+          expect(newUser.index).to.be.equal(100);
+          chai.request(server)
+            .put(`/api/user/index/${newUser.id}`)
+            .send({ index: 105 })
+            .end((err, res) => {
+              expect(err).to.be.null;
+              expect(res).to.be.status(200);
+              expect(res.body.index).to.be.equal(105);
+              done();
+            });
+        });
+    });
+    it('should return status 400 because index is not provided', (done) => {
+      const newUser = new User({ name: 'David' });
+      newUser.save()
+        .then(() => {
+          expect(newUser.isNew).to.be.false;
+          expect(newUser.index).to.be.equal(100);
+          chai.request(server)
+            .put(`/api/user/index/${newUser.id}`)
+            .send({})
+            .end((err, res) => {
+              expect(res).to.be.status(400);
+              done();
+            });
+        });
+    });
+    it('should return status 400 because id is invalid', (done) => {
+      chai.request(server)
+        .put('/api/user/index/123')
+        .send({})
+        .end((err, res) => {
+          expect(res).to.be.status(400);
+          done();
+        });
+    });
+  });
+  describe('PUT /user/cases/:id', () => {
+    it('should return status 200 because a valid securities id is provided', (done) => {
+      const newSec = new Security();
+      newSec.name = 'Gold';
+      newSec.startingPrice = 100;
+      newSec.type = 2;
+      newSec.save()
+        .then(() => {
+          const newUser = new User({ name: 'David' });
+          newUser.save()
+            .then(() => {
+              chai.request(server)
+                .put(`/api/user/cases/${newUser.id}`)
+                .send({ caseID: newSec.id })
+                .end((err, res) => {
+                  expect(res).to.be.status(200);
+                  expect(res.body.cases[0]._id).to.be.equal(newSec.id);
+                  done();
+                });
+            });
+        });
+    });
+    it('should return status 400 because a valid securities id is not provided', (done) => {
+      const newUser = new User({ name: 'David' });
+      newUser.save()
+        .then(() => {
+          chai.request(server)
+            .put(`/api/user/cases/${newUser.id}`)
+            .send({ caseID: 123 })
+            .end((err, res) => {
+              expect(res).to.be.status(400);
+              done();
+            });
+        });
+    });
+    it('should return status 400 because a valid user id is not provided', (done) => {
+      const newSec = new Security();
+      newSec.name = 'Gold';
+      newSec.startingPrice = 100;
+      newSec.type = 2;
+      newSec.save()
+        .then(() => {
+          const newUser = new User({ name: 'David' });
+          newUser.save()
+            .then(() => {
+              chai.request(server)
+                .put('/api/user/cases/123')
+                .send({ caseID: newSec.id })
+                .end((err, res) => {
+                  expect(res).to.be.status(400);
+                  done();
+                });
             });
         });
     });
