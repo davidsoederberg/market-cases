@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions */
-/* eslint-disable import/no-unresolved */
+
 const chai = require('chai');
 const chatHttp = require('chai-http');
 const mongoose = require('mongoose');
