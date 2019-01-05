@@ -8,13 +8,14 @@ const securities = new Schema({
     required: true,
   },
   type: {
-    // 0 stock
-    // 1 currency
-    // 2 gold
+    // 0 stock - realtime
+    // 1 stock - delay
+    // 2 currency
+    // 3 gold
     type: Number,
     required: true,
     min: 0,
-    max: 2,
+    max: 3,
   },
   startingPrice: {
     type: Number,
