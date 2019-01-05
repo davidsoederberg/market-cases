@@ -121,8 +121,8 @@ describe('database and models', () => {
         done();
       });
     });
-    it('should be invalid if type is higher than 2', (done) => {
-      const newSec = new Security({ name: 'Gold', startingPrice: 100, type: 3 });
+    it('should be invalid if type is higher than 3', (done) => {
+      const newSec = new Security({ name: 'Gold', startingPrice: 100, type: 4 });
       newSec.validate((err) => {
         expect(err).to.exist;
         done();

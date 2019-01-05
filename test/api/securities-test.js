@@ -146,10 +146,10 @@ describe('api-securities-route testing', () => {
           }
         });
     });
-    it('should return status 400 because type is above 2', (done) => {
+    it('should return status 400 because type is above 3', (done) => {
       chai.request(server)
         .post('/api/sec')
-        .send({ name: 'Gold', startingPrice: 100, type: 3 })
+        .send({ name: 'Gold', startingPrice: 100, type: 4 })
         .end((err, res) => {
           if (err) {
             done(err);

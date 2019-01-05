@@ -3,12 +3,12 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
-const debug = require('debug')('b-rscase:test:service.test.js');
-const chalk = require('chalk');
+// const debug = require('debug')('b-rscase:test:service.test.js');
+// const chalk = require('chalk');
 const { expect } = require('chai');
-const currencyRate = require('../service/currency_rate');
-const stockPrice = require('../service/stock_price');
-const goldPrice = require('../service/gold_price');
+const currencyRate = require('../service/data/currency_data');
+const stockPrice = require('../service/data/stock_data');
+const goldPrice = require('../service/data/gold_data');
 
 describe('service tests', () => {
   describe('currency-rate tests', () => {
@@ -60,7 +60,6 @@ describe('service tests', () => {
     });
     it('should return correctly because THQ exists', async () => {
       const response = await stockPrice.delay('THQ');
-      debug(chalk.blue(response));
       expect(response.name).to.be.equal('THQ Nordic B');
       expect(response.lastPrice).to.be.approximately(150, 100);
     }).timeout(10000);

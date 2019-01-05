@@ -161,7 +161,7 @@ describe('api-user-route testing', () => {
     });
   });
   describe('PUT /user/cases/:id', () => {
-    it('should return status 200 because a valid securities id is provided', (done) => {
+    it('should return status 200 because a valid securities id is provided (long = true)', (done) => {
       const newSec = new Security();
       newSec.name = 'Gold';
       newSec.startingPrice = 100;
@@ -173,10 +173,33 @@ describe('api-user-route testing', () => {
             .then(() => {
               chai.request(server)
                 .put(`/api/user/cases/${newUser.id}`)
-                .send({ caseID: newSec.id })
+                .send({ caseID: newSec.id, long: true })
                 .end((err, res) => {
                   expect(res).to.be.status(200);
-                  expect(res.body.cases[0]._id).to.be.equal(newSec.id);
+                  expect(res.body.cases[0].id).to.be.equal(newSec.id);
+                  expect(res.body.cases[0].long).to.be.true;
+                  done();
+                });
+            });
+        });
+    });
+    it('should return status 200 because a valid securities id is provided (long = false)', (done) => {
+      const newSec = new Security();
+      newSec.name = 'Gold';
+      newSec.startingPrice = 100;
+      newSec.type = 2;
+      newSec.save()
+        .then(() => {
+          const newUser = new User({ name: 'David' });
+          newUser.save()
+            .then(() => {
+              chai.request(server)
+                .put(`/api/user/cases/${newUser.id}`)
+                .send({ caseID: newSec.id, long: false })
+                .end((err, res) => {
+                  expect(res).to.be.status(200);
+                  expect(res.body.cases[0].id).to.be.equal(newSec.id);
+                  expect(res.body.cases[0].long).to.be.false;
                   done();
                 });
             });
