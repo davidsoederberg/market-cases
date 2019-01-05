@@ -3,6 +3,8 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
+const debug = require('debug')('b-rscase:test:service.test.js');
+const chalk = require('chalk');
 const { expect } = require('chai');
 const currencyRate = require('../service/currency_rate');
 const stockPrice = require('../service/stock_price');
@@ -30,21 +32,46 @@ describe('service tests', () => {
   });
   describe('stock-price tests', () => {
     it('should return a value because AAPL exists', async () => {
-      const price = await stockPrice.realTimeSharePrice('AAPL');
-      expect(price).to.be.approximately(150, 50);
+      const symbol = ['AAPL'];
+      const response = await stockPrice.realTime(symbol);
+      expect(response.data[0].symbol).to.be.equal(symbol[0]);
+      expect(Number(response.data[0].price)).to.be.approximately(150, 100);
     }).timeout(10000);
-    /* it('should return a value because THQN-B.st exists', async () => {
-      const price = await stockPrice.realTimeSharePrice('THQN-B.st');
-      expect(price).to.be.approximately(150, 100);
-    }).timeout(10000); */
+    it('should return correctly because symbols exists', async () => {
+      const symbols = ['AAPL', 'LEO.ST', 'NDA-SE.ST', 'ERIC-B.ST'];
+      const response = await stockPrice.realTime(symbols);
+
+      expect(response.data[0].symbol).to.be.equal(symbols[0]);
+      expect(Number(response.data[0].price)).to.be.approximately(150, 100);
+      expect(response.data[1].symbol).to.be.equal(symbols[3]);
+      expect(Number(response.data[1].price)).to.be.approximately(80, 50);
+      expect(response.data[2].symbol).to.be.equal(symbols[1]);
+      expect(Number(response.data[2].price)).to.be.approximately(40, 100);
+      expect(response.data[3].symbol).to.be.equal(symbols[2]);
+      expect(Number(response.data[3].price)).to.be.approximately(80, 100);
+    }).timeout(10000);
     it('should return error because xyz.st does not exist', async () => {
       try {
-        await stockPrice.realTimeSharePrice('xyz.st');
+        await stockPrice.realTime('xyz.st');
         expect(true).to.be.false;
       } catch (err) {
         expect(err).to.exist;
       }
     });
+    it('should return correctly because THQ exists', async () => {
+      const response = await stockPrice.delay('THQ');
+      debug(chalk.blue(response));
+      expect(response.name).to.be.equal('THQ Nordic B');
+      expect(response.lastPrice).to.be.approximately(150, 100);
+    }).timeout(10000);
+    it('should return correctly because xyz does not exists', async () => {
+      try {
+        await stockPrice.realTime('xyz');
+        expect(true).to.be.false;
+      } catch (err) {
+        expect(err).to.exist;
+      }
+    }).timeout(10000);
   });
   describe('gold-price tests', () => {
     it('should return value', async () => {
