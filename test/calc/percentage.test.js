@@ -6,8 +6,8 @@ if (process.env.NODE_ENV !== 'production') {
 // const debug = require('debug')('b-rscase:test:service.test.js');
 // const chalk = require('chalk');
 const { expect } = require('chai');
-const userPercent = require('../../service/calc/user-percentage');
-const secPercent = require('../../service/calc/security-percentage');
+const userPercent = require('../../lib/calc/user-percentage');
+const secPercent = require('../../lib/calc/security-percentage');
 
 describe('percentage-calc tests', () => {
   describe('user-percentage', () => {

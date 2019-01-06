@@ -17,11 +17,26 @@ const user = new Schema({
       default: true,
     },
   }],
-  index: {
-    type: Number,
-    default: 100,
-    required: true,
-  },
+  dayData: [{
+    index: {
+      type: Number,
+      required: true,
+    },
+    day: {
+      type: String,
+      required: true,
+    },
+  }],
+  intradayData: [{
+    index: {
+      type: Number,
+      required: true,
+    },
+    time: {
+      type: String,
+      required: true,
+    },
+  }],
 });
 
 const userModel = mongoose.model('User', user);

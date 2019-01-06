@@ -6,7 +6,7 @@ if (process.env.NODE_ENV !== 'production') {
 // const debug = require('debug')('b-rscase:test:service.test.js');
 // const chalk = require('chalk');
 const { expect } = require('chai');
-const calcUserIndex = require('../../service/calc/user-index');
+const calcUserIndex = require('../../lib/calc/user-index');
 
 describe('user-index calculation tests', () => {
   it('should return 100 because startingPrice equals current price', () => {
