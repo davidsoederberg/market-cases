@@ -11,8 +11,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
-const cronAfterClose = require('./service/cron/after-close-cron');
-const cronIntraday = require('./service/cron/intraday-cron');
+const cronAfterClose = require('./lib/cron/after-day');
+const cronIntraday = require('./lib/cron/intraday');
 
 const api = require('./router/routes/api');
 

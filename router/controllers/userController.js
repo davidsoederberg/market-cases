@@ -42,23 +42,6 @@ exports.apiPost = (req, res) => {
   });
 };
 
-exports.apiUpdateIndex = (req, res) => {
-  if (req.body.index) {
-    User.findOneAndUpdate({ _id: req.params.id },
-      { $set: { index: req.body.index } }, { upsert: true, new: true }, (error, doc) => {
-        if (error) {
-          debug(chalk.red(error));
-          res.status(400).end();
-        } else {
-          debug('%o', doc);
-          res.send(doc);
-        }
-      });
-  } else {
-    res.status(400).end();
-  }
-};
-
 exports.apiUpdateCases = (req, res) => {
   Securities.findOne({ _id: req.body.caseID }, (error, sec) => {
     if (error) {

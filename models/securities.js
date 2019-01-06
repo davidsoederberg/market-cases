@@ -21,9 +21,25 @@ const securities = new Schema({
     type: Number,
     required: true,
   },
-  prices: [{
-    date: String,
-    price: Number,
+  dayData: [{
+    index: {
+      type: Number,
+      required: true,
+    },
+    day: {
+      type: String,
+      required: true,
+    },
+  }],
+  intradayData: [{
+    index: {
+      type: Number,
+      required: true,
+    },
+    time: {
+      type: String,
+      required: true,
+    },
   }],
 });
 

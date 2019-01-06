@@ -11,8 +11,6 @@ router.route('/user')
 router.route('/user/:id')
   .get(userController.apiGetOne);
 
-router.route('/user/index/:id')
-  .put(userController.apiUpdateIndex);
 
 router.route('/user/cases/:id')
   .put(userController.apiUpdateCases);
@@ -22,7 +20,6 @@ router.route('/sec')
   .get(secController.apiGet);
 
 router.route('/sec/:id')
-  .put(secController.apiUpdateNewPrice)
   .get(secController.apiGetOne);
 
 

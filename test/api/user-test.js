@@ -117,49 +117,6 @@ describe('api-user-route testing', () => {
         });
     });
   });
-  describe('PUT /user/index/:id', () => {
-    it('should return status 200 because index is provided', (done) => {
-      const newUser = new User({ name: 'David' });
-      newUser.save()
-        .then(() => {
-          expect(newUser.isNew).to.be.false;
-          expect(newUser.index).to.be.equal(100);
-          chai.request(server)
-            .put(`/api/user/index/${newUser.id}`)
-            .send({ index: 105 })
-            .end((err, res) => {
-              expect(err).to.be.null;
-              expect(res).to.be.status(200);
-              expect(res.body.index).to.be.equal(105);
-              done();
-            });
-        });
-    });
-    it('should return status 400 because index is not provided', (done) => {
-      const newUser = new User({ name: 'David' });
-      newUser.save()
-        .then(() => {
-          expect(newUser.isNew).to.be.false;
-          expect(newUser.index).to.be.equal(100);
-          chai.request(server)
-            .put(`/api/user/index/${newUser.id}`)
-            .send({})
-            .end((err, res) => {
-              expect(res).to.be.status(400);
-              done();
-            });
-        });
-    });
-    it('should return status 400 because id is invalid', (done) => {
-      chai.request(server)
-        .put('/api/user/index/123')
-        .send({})
-        .end((err, res) => {
-          expect(res).to.be.status(400);
-          done();
-        });
-    });
-  });
   describe('PUT /user/cases/:id', () => {
     it('should return status 200 because a valid securities id is provided (long = true)', (done) => {
       const newSec = new Security();
