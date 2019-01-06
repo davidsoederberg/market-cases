@@ -11,6 +11,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
+const cronAfterClose = require('./service/cron/after-close-cron');
+const cronIntraday = require('./service/cron/intraday-cron');
 
 const api = require('./router/routes/api');
 
@@ -22,6 +24,10 @@ if (process.env.NODE_ENV !== 'test') {
     (err) => { debug(chalk.red(err)); },
   );
 }
+
+cronAfterClose.start();
+cronIntraday.start();
+debug(chalk.green('Cron services started'));
 
 const app = express();
 

@@ -6,9 +6,9 @@ if (process.env.NODE_ENV !== 'production') {
 // const debug = require('debug')('b-rscase:test:service.test.js');
 // const chalk = require('chalk');
 const { expect } = require('chai');
-const currencyRate = require('../service/data/currency_data');
-const stockPrice = require('../service/data/stock_data');
-const goldPrice = require('../service/data/gold_data');
+const currencyRate = require('../service/data/currency-data');
+const stockPrice = require('../service/data/stock-data');
+const goldPrice = require('../service/data/gold-data');
 
 describe('service tests', () => {
   describe('currency-rate tests', () => {

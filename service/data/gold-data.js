@@ -1,6 +1,6 @@
 const request = require('request');
 const cheerio = require('cheerio');
-const debug = require('debug')('b-rscase:gold_data.js');
+const debug = require('debug')('b-rscase:gold-data.js');
 const chalk = require('chalk');
 
 exports.goldprice = () => new Promise((resolve, reject) => {
