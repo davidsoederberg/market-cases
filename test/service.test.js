@@ -34,21 +34,21 @@ describe('service tests', () => {
     it('should return a value because AAPL exists', async () => {
       const symbol = ['AAPL'];
       const response = await stockPrice.realTime(symbol);
-      expect(response.data[0].symbol).to.be.equal(symbol[0]);
-      expect(Number(response.data[0].price)).to.be.approximately(150, 100);
+      expect(response[0].symbol).to.be.equal(symbol[0]);
+      expect(Number(response[0].price)).to.be.approximately(150, 100);
     }).timeout(10000);
     it('should return correctly because symbols exists', async () => {
       const symbols = ['AAPL', 'LEO.ST', 'NDA-SE.ST', 'ERIC-B.ST'];
       const response = await stockPrice.realTime(symbols);
 
-      expect(response.data[0].symbol).to.be.equal(symbols[0]);
-      expect(Number(response.data[0].price)).to.be.approximately(150, 100);
-      expect(response.data[1].symbol).to.be.equal(symbols[3]);
-      expect(Number(response.data[1].price)).to.be.approximately(80, 50);
-      expect(response.data[2].symbol).to.be.equal(symbols[1]);
-      expect(Number(response.data[2].price)).to.be.approximately(40, 100);
-      expect(response.data[3].symbol).to.be.equal(symbols[2]);
-      expect(Number(response.data[3].price)).to.be.approximately(80, 100);
+      expect(response[0].symbol).to.be.equal(symbols[0]);
+      expect(Number(response[0].price)).to.be.approximately(150, 100);
+      expect(response[1].symbol).to.be.equal(symbols[3]);
+      expect(Number(response[1].price)).to.be.approximately(80, 50);
+      expect(response[2].symbol).to.be.equal(symbols[1]);
+      expect(Number(response[2].price)).to.be.approximately(40, 100);
+      expect(response[3].symbol).to.be.equal(symbols[2]);
+      expect(Number(response[3].price)).to.be.approximately(80, 100);
     }).timeout(10000);
     it('should return error because xyz.st does not exist', async () => {
       try {

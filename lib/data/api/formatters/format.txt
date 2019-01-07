@@ -1,0 +1,8 @@
+type: JSON object
+
+{
+    name: String,
+    price: Number,
+    changePercent: Number (can be set to undefined),
+    symbol: String (can be set to undefined
+}
