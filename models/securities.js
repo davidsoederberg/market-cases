@@ -7,6 +7,10 @@ const securities = new Schema({
     type: String,
     required: true,
   },
+  symbol: {
+    type: String,
+    required: true,
+  },
   type: {
     // 0 stock - realtime
     // 1 stock - delay
@@ -22,7 +26,7 @@ const securities = new Schema({
     required: true,
   },
   dayData: [{
-    index: {
+    price: {
       type: Number,
       required: true,
     },
@@ -32,7 +36,7 @@ const securities = new Schema({
     },
   }],
   intradayData: [{
-    index: {
+    price: {
       type: Number,
       required: true,
     },

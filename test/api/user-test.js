@@ -123,6 +123,7 @@ describe('api-user-route testing', () => {
       newSec.name = 'Gold';
       newSec.startingPrice = 100;
       newSec.type = 2;
+      newSec.symbol = 'Gold';
       newSec.save()
         .then(() => {
           const newUser = new User({ name: 'David' });
@@ -145,6 +146,7 @@ describe('api-user-route testing', () => {
       newSec.name = 'Gold';
       newSec.startingPrice = 100;
       newSec.type = 2;
+      newSec.symbol = 'Gold';
       newSec.save()
         .then(() => {
           const newUser = new User({ name: 'David' });
@@ -180,6 +182,7 @@ describe('api-user-route testing', () => {
       newSec.name = 'Gold';
       newSec.startingPrice = 100;
       newSec.type = 2;
+      newSec.symbol = 'Gold';
       newSec.save()
         .then(() => {
           const newUser = new User({ name: 'David' });

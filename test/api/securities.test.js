@@ -61,6 +61,7 @@ describe('api-securities-route testing', () => {
       newSec.name = 'Gold';
       newSec.startingPrice = 100;
       newSec.type = 2;
+      newSec.symbol = 'Gold';
       newSec.save()
         .then(() => {
           chai.request(server)
@@ -81,7 +82,9 @@ describe('api-securities-route testing', () => {
     it('should return status 200 because valid body provided', (done) => {
       chai.request(server)
         .post('/api/sec')
-        .send({ name: 'Gold', startingPrice: 100, type: 2 })
+        .send({
+          name: 'Gold', startingPrice: 100, type: 2, symbol: 'Gold',
+        })
         .end((err, res) => {
           if (err) {
             done(err);
@@ -94,7 +97,7 @@ describe('api-securities-route testing', () => {
           }
         });
     });
-    it('should return status 400 because no type provided', (done) => {
+    it('should return status 400 because no type, symbol provided', (done) => {
       chai.request(server)
         .post('/api/sec')
         .send({ name: 'Gold', startingPrice: 100 })
@@ -107,7 +110,7 @@ describe('api-securities-route testing', () => {
           }
         });
     });
-    it('should return status 400 because no startingPrice provided', (done) => {
+    it('should return status 400 because no startingPrice, symbol provided', (done) => {
       chai.request(server)
         .post('/api/sec')
         .send({ name: 'Gold', type: 2 })
@@ -120,7 +123,7 @@ describe('api-securities-route testing', () => {
           }
         });
     });
-    it('should return status 400 because no name provided', (done) => {
+    it('should return status 400 because no name, symbol provided', (done) => {
       chai.request(server)
         .post('/api/sec')
         .send({ type: 2, startingPrice: 100 })
@@ -149,7 +152,9 @@ describe('api-securities-route testing', () => {
     it('should return status 400 because type is above 3', (done) => {
       chai.request(server)
         .post('/api/sec')
-        .send({ name: 'Gold', startingPrice: 100, type: 4 })
+        .send({
+          name: 'Gold', startingPrice: 100, type: 4, symbol: 'Gold',
+        })
         .end((err, res) => {
           if (err) {
             done(err);
@@ -166,6 +171,7 @@ describe('api-securities-route testing', () => {
       newSec.name = 'Gold';
       newSec.startingPrice = 100;
       newSec.type = 2;
+      newSec.symbol = 'Gold';
       newSec.save()
         .then(() => {
           chai.request(server)
