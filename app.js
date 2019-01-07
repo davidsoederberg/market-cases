@@ -14,6 +14,7 @@ const mongoose = require('mongoose');
 const cronAfterClose = require('./lib/cron/after-close');
 const cronIntraday = require('./lib/cron/intraday');
 const cronBeforeOpen = require('./lib/cron/before-open');
+const update = require('./lib/data/update/after-close/update-securities-day');
 
 const api = require('./router/routes/api');
 
@@ -33,6 +34,10 @@ debug(chalk.green('Cron services started'));
 
 const app = express();
 
+setTimeout(() => {
+  debug(chalk.yellow('Update starting...'));
+  update.update();
+}, 2000);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');

@@ -22,5 +22,4 @@ router.route('/sec')
 router.route('/sec/:id')
   .get(secController.apiGetOne);
 
-
 module.exports = router;
