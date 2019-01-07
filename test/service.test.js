@@ -17,14 +17,14 @@ describe('service tests', () => {
       expect(response.price).to.approximately(9, 1);
       expect(response.name).to.be.equal('USD/SEK');
       expect(response.changePercent).to.not.exist;
-      expect(response.symbol).to.not.exist;
+      expect(response.symbol).to.exist;
     }).timeout(10000);
     it('should return value 1 because SEK/SEK is the same', async () => {
       const response = await currencyRate.currencyRate('SEK', 'SEK');
       expect(response.price).to.be.to.equal(1);
       expect(response.name).to.be.equal('SEK/SEK');
       expect(response.changePercent).to.not.exist;
-      expect(response.symbol).to.not.exist;
+      expect(response.symbol).to.exist;
     }).timeout(10000);
     it('should return error because abc123/xyz does not exist', async () => {
       try {
@@ -94,7 +94,7 @@ describe('service tests', () => {
       expect(response.price).to.be.approximately(1300, 250);
       expect(response.name).to.be.equal('Gold');
       expect(response.changePercent).to.not.exist;
-      expect(response.symbol).to.not.exist;
+      expect(response.symbol).to.exist;
     });
   });
 });
