@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const mongoose = require('mongoose');
-const debug = require('debug')('b-rscase:test:update:after-close.test.js');
+const debug = require('debug')('b-rscase:test:update:securities:after-close.test.js');
 const chalk = require('chalk');
 const moment = require('moment');
 const Security = require('../../../models/securities');

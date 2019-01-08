@@ -8,7 +8,7 @@ const user = new Schema({
     required: true,
   },
   cases: [{
-    id: {
+    case: {
       type: mongoose.Schema.ObjectId,
       ref: 'Securities',
     },

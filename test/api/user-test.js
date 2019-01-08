@@ -134,7 +134,7 @@ describe('api-user-route testing', () => {
                 .send({ caseID: newSec.id, long: true })
                 .end((err, res) => {
                   expect(res).to.be.status(200);
-                  expect(res.body.cases[0].id).to.be.equal(newSec.id);
+                  expect(res.body.cases[0].case).to.be.equal(newSec.id);
                   expect(res.body.cases[0].long).to.be.true;
                   done();
                 });
@@ -157,7 +157,7 @@ describe('api-user-route testing', () => {
                 .send({ caseID: newSec.id, long: false })
                 .end((err, res) => {
                   expect(res).to.be.status(200);
-                  expect(res.body.cases[0].id).to.be.equal(newSec.id);
+                  expect(res.body.cases[0].case).to.be.equal(newSec.id);
                   expect(res.body.cases[0].long).to.be.false;
                   done();
                 });

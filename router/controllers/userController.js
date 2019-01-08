@@ -49,7 +49,7 @@ exports.apiUpdateCases = (req, res) => {
       res.status(400).end();
     } else {
       User.findOneAndUpdate({ _id: req.params.id },
-        { $push: { cases: { id: sec, long: req.body.long } } },
+        { $push: { cases: { case: sec, long: req.body.long } } },
         { upsert: true, new: true }, (err, doc) => {
           if (err) {
             debug(chalk.red(error));

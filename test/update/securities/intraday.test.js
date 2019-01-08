@@ -1,10 +1,10 @@
 const { expect } = require('chai');
 const mongoose = require('mongoose');
-const debug = require('debug')('b-rscase:test:update:after-close.test.js');
+const debug = require('debug')('b-rscase:test:update:securities:intraday.test.js');
 const chalk = require('chalk');
 const moment = require('moment');
 const Security = require('../../../models/securities');
-const secAfterClose = require('../../../lib/data/update/securities/intraday');
+const secIntraday = require('../../../lib/data/update/securities/intraday');
 
 before((done) => {
   mongoose.connect('mongodb://localhost/test_db', { useNewUrlParser: true });
@@ -41,7 +41,7 @@ describe('securities intraday update', () => {
     });
     gold.save()
       .then(async () => {
-        await secAfterClose.update();
+        await secIntraday.update();
         Security.findById(gold.id, (err, doc) => {
           if (err) {
             debug(chalk.red(err));
@@ -54,7 +54,7 @@ describe('securities intraday update', () => {
             expect(doc.intradayData[0].time).to.be.equal(moment().format('HH:mm'));
           }
         });
-        await secAfterClose.update();
+        await secIntraday.update();
         Security.findById(gold.id, (err, doc) => {
           if (err) {
             debug(chalk.red(err));
@@ -91,7 +91,7 @@ describe('securities intraday update', () => {
               .then(() => {
                 us.save()
                   .then(async () => {
-                    await secAfterClose.update();
+                    await secIntraday.update();
                     Security.findById(gold.id, (err, doc) => {
                       if (err) {
                         debug(chalk.red(err));
@@ -135,7 +135,7 @@ describe('securities intraday update', () => {
                         expect(doc.intradayData[0].time).to.be.equal(moment().format('HH:mm'));
                       }
                     });
-                    await secAfterClose.update();
+                    await secIntraday.update();
                     Security.findById(gold.id, (err, doc) => {
                       if (err) {
                         debug(chalk.red(err));
