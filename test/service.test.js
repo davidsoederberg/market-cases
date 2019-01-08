@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions */
-if (process.env.NODE_ENV !== 'production') {
+/* if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
@@ -97,4 +97,4 @@ describe('service tests', () => {
       expect(response.symbol).to.exist;
     });
   });
-});
+}); */
