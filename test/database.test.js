@@ -258,5 +258,64 @@ describe('database and models', () => {
         done();
       });
     });
+    it('should return index dayData=100 and intradayData=1337', (done) => {
+      const newSec = new Security({ name: 'Gold', startingPrice: 100, type: 3 });
+      newSec.dayData = [{ index: 100, day: '2100-01-01' }];
+      newSec.intradayData = [{ index: 1337, time: '23:59' }];
+      newSec.validate((err) => {
+        expect(err).to.not.exist;
+      });
+      newSec.save()
+        .then(() => {
+          expect(newSec.dayData).to.be.length(1);
+          expect(newSec.dayData[0].index).to.be.equal(100);
+          expect(newSec.dayData[0].day).to.be.equal('2100-01-01');
+          expect(newSec.intradayData).to.be.length(1);
+          expect(newSec.intradayData[0].index).to.be.equal(1337);
+          expect(newSec.intradayData[0].time).to.be.equal('23:59');
+          done();
+        });
+    });
+    it('should be invalid because dayData[i].index not provided', (done) => {
+      const newSec = new Security({ name: 'Gold', startingPrice: 100, type: 3 });
+      newSec.dayData = [{ day: '2100-01-01' }];
+      newSec.validate((err) => {
+        expect(err).to.exist;
+        done();
+      });
+    });
+    it('should be invalid because dayData[i].day not provided', (done) => {
+      const newSec = new Security({ name: 'Gold', startingPrice: 100, type: 3 });
+      newSec.dayData = [{ index: 100 }];
+      newSec.validate((err) => {
+        expect(err).to.exist;
+        done();
+      });
+    });
+    it('should be invalid because intraday[i].index not provided', (done) => {
+      const newSec = new Security({ name: 'Gold', startingPrice: 100, type: 3 });
+      newSec.dayData = [{ time: '23:59' }];
+      newSec.validate((err) => {
+        expect(err).to.exist;
+        done();
+      });
+    });
+    it('should be invalid because intraday[i].time not provided', (done) => {
+      const newSec = new Security({ name: 'Gold', startingPrice: 100, type: 3 });
+      newSec.intradayData = [{ index: 100 }];
+      newSec.validate((err) => {
+        expect(err).to.exist;
+        done();
+      });
+    });
+    it('should be invalid because intraday[i].time not provided', (done) => {
+      const newSec = new Security({ name: 'Gold', startingPrice: 100, type: 3 });
+      newSec.intradayData = [{ index: 100 }];
+      newSec.dayData = [{ index: 100, day: '2100-01-01' }];
+      newSec.validate((err) => {
+        expect(err).to.exist;
+        done();
+      });
+    });
   });
 });
