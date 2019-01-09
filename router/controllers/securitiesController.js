@@ -31,6 +31,7 @@ exports.apiPost = (req, res) => {
   newSec.name = req.body.name;
   newSec.type = req.body.type;
   newSec.startingPrice = req.body.startingPrice;
+  newSec.symbol = req.body.symbol;
   newSec.save((error, doc) => {
     if (error) {
       debug(chalk.red(error));
