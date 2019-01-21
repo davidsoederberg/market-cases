@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "postinstall": "cd ./frontend && npm run install",
     "prestart": "npm run build",
     "start": "DEBUG=b-rscase:* node ./bin/www",
     "lint": "eslint . --ext .js --ext .json && cd ./frontend && npm run lint",
