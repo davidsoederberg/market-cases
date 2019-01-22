@@ -1,10 +1,12 @@
 <template>
   <v-app>
     <v-toolbar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
+      <v-tab to="/">
+        <v-toolbar-title class="headline text-uppercase">
+          <span>Vuetify</span>
+          <span class="font-weight-light">MATERIAL DESIGN</span>
+        </v-toolbar-title>
+      </v-tab>
       <v-spacer></v-spacer>
       <v-btn
         flat
@@ -13,11 +15,13 @@
       >
         <span class="mr-2">Latest Release</span>
       </v-btn>
+      <v-tab to="/about">About</v-tab>
     </v-toolbar>
-
+  <router-view>
     <v-content>
       <HelloWorld/>
     </v-content>
+    </router-view>
   </v-app>
 </template>
 
