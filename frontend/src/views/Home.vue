@@ -1,13 +1,18 @@
 <template>
-  <HelloWorld />
+  <div>
+      <Leaderboard />
+      <Tabs />
+  </div>
 </template>
 
 <script>
-import HelloWorld from '../components/HelloWorld.vue';
+import Leaderboard from '../components/Leaderboard.vue';
+import Tabs from '../components/Tabs.vue';
 
 export default {
   components: {
-    HelloWorld,
+    Leaderboard,
+    Tabs,
   },
 };
 </script>
