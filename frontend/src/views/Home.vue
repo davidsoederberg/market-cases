@@ -1,7 +1,7 @@
 <template>
   <div>
-      <Leaderboard />
-      <Tabs />
+    <Leaderboard />
+    <Tabs />
   </div>
 </template>
 
