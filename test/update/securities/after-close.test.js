@@ -91,6 +91,7 @@ describe('securities after-close update', () => {
               .then(() => {
                 us.save()
                   .then(async () => {
+                    debug('REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE');
                     await secAfterClose.update();
                     Security.findById(gold.id, (err, doc) => {
                       if (err) {

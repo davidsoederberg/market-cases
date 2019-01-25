@@ -11,6 +11,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
+const history = require('connect-history-api-fallback');
 const cronAfterClose = require('./lib/cron/after-close');
 const cronIntraday = require('./lib/cron/intraday');
 const cronBeforeOpen = require('./lib/cron/before-open');
@@ -41,7 +42,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(history());
+app.use(express.static(path.join(__dirname, 'frontend/dist')));
 
 app.use('/api', api);
 
