@@ -19,7 +19,9 @@ export default {
         scales: {
           yAxes: [{
             ticks: {
-              beginAtZero: true,
+              callback: function(value, index, values) {
+                return `${value}%`;
+              },
             },
             gridLines: {
               display: true,
@@ -44,7 +46,7 @@ export default {
       labels: this.chartLabels,
       datasets: [
         {
-          label: 'downloads',
+          label: 'Percent',
           borderColor: '#249EBF',
           pointBackgroundColor: 'white',
           borderWidth: 1,
