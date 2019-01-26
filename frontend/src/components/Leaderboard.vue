@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios';
 
 export default {
   name: 'Leaderboard.vue',
@@ -57,8 +57,8 @@ export default {
   methods: {
     requestData() {
       axios.get('/api/user')
-        .then(response => {
-          response.data.forEach(data => {
+        .then((response) => {
+          response.data.forEach((data) => {
             const object = {};
             object.name = data.name;
             object.index = this.indexToPercent(data.dayData[data.dayData.length - 1].index);
@@ -66,15 +66,15 @@ export default {
             this.mainItems.push(object);
           });
           this.loaded = true;
-        })
+        });
     },
     indexToPercent(index) {
       return Number((index - 100).toFixed(2));
-    }
+    },
   },
-  mounted(){
+  mounted() {
     this.requestData();
-  }
+  },
 };
 </script>
 

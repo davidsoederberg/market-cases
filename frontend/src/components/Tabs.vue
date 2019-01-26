@@ -142,8 +142,8 @@
 </template>
 
 <script>
+import axios from 'axios';
 import LineChart from './LineChart.vue';
-import axios from "axios";
 
 export default {
 
@@ -153,8 +153,8 @@ export default {
   },
   data() {
     return {
-      labels: [[],[],[],[],[],[]],
-      data: [[],[],[],[],[],[]],
+      labels: [[], [], [], [], [], []],
+      data: [[], [], [], [], [], []],
       labelsIntraday: [],
       dataIntraday: [],
       loaded: false,
@@ -164,23 +164,23 @@ export default {
   methods: {
     requestData() {
       axios.get('/api/user')
-        .then(response => {
+        .then((response) => {
           response.data.forEach((data, index) => {
-              data.dayData.forEach(dayData => {
-                this.labels[index].push(dayData.day);
-                this.data[index].push(`${this.indexToPercent(dayData.index)}`);
-                this.loaded = true;
-              })
+            data.dayData.forEach((dayData) => {
+              this.labels[index].push(dayData.day);
+              this.data[index].push(`${this.indexToPercent(dayData.index)}`);
+              this.loaded = true;
+            });
           });
-        })
+        });
     },
     indexToPercent(index) {
       return Number((index - 100).toFixed(2));
-    }
+    },
   },
-  mounted(){
+  mounted() {
     this.requestData();
-  }
+  },
 };
 </script>
 

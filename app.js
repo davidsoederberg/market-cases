@@ -46,8 +46,6 @@ app.use('/api', api);
 app.use(history());
 app.use(express.static(path.join(__dirname, 'frontend/dist')));
 
-
-
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   next(createError(404));
