@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint no-underscore-dangle: ["error", { "allow": ["_id"] }] */
 
-const chai = require('chai');
+/* const chai = require('chai');
 const chatHttp = require('chai-http');
 const mongoose = require('mongoose');
 const debug = require('debug')('b-rscase:test:user-test.js');
@@ -201,3 +201,4 @@ describe('api-securities-route testing', () => {
     });
   });
 });
+*/

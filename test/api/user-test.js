@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint no-underscore-dangle: ["error", { "allow": ["_id"] }] */
 
-const chai = require('chai');
+/* const chai = require('chai');
 const chatHttp = require('chai-http');
 const mongoose = require('mongoose');
 const debug = require('debug')('b-rscase:test:user-test.js');
@@ -118,7 +118,8 @@ describe('api-user-route testing', () => {
     });
   });
   describe('PUT /user/cases/:id', () => {
-    it('should return status 200 because a valid securities id is provided (long = true)', (done) => {
+    it('should return status 200 because a valid securities id is provided (long = true)',
+    (done) => {
       const newSec = new Security();
       newSec.name = 'Gold';
       newSec.startingPrice = 100;
@@ -141,7 +142,8 @@ describe('api-user-route testing', () => {
             });
         });
     });
-    it('should return status 200 because a valid securities id is provided (long = false)', (done) => {
+    it('should return status 200 because a valid securities id is provided (long = false)',
+    (done) => {
       const newSec = new Security();
       newSec.name = 'Gold';
       newSec.startingPrice = 100;
@@ -200,3 +202,4 @@ describe('api-user-route testing', () => {
     });
   });
 });
+*/
