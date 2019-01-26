@@ -4,7 +4,7 @@
       text-xs
       justify-center
     align="center">
-      <v-data-table :headers="mainHeaders"
+      <v-data-table v-if="loaded" :headers="mainHeaders"
                     :items="mainItems"
                     header-key="index"
                     item-key="name"
@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'Leaderboard.vue',
   data() {
@@ -48,15 +50,30 @@ export default {
           align: 'center', text: 'Dags', value: 'today', width: 150,
         },
       ],
-      mainItems: [
-        { name: 'David Söderberg', index: 2.02, today: 0.01 },
-        { name: 'Jakob Häger', index: -5.43, today: -0.01 },
-        { name: 'David Söderberg', index: 2.02, today: 0.01 },
-        { name: 'Jakob Häger', index: -5.43, today: -0.01 },
-        { name: 'David Söderberg', index: 2.02, today: 0.01 },
-        { name: 'Jakob Häger', index: -5.43, today: -0.01 },
-      ],
+      mainItems: [],
+      loaded: false,
     };
+  },
+  methods: {
+    requestData() {
+      axios.get('/api/user')
+        .then((response) => {
+          response.data.forEach((data) => {
+            const object = {};
+            object.name = data.name;
+            object.index = this.indexToPercent(data.dayData[data.dayData.length - 1].index);
+            object.today = data.intradayData.length === 0 ? 0.00 : this.indexToPercent(data.dayData[data.dayData.length - 1].index);
+            this.mainItems.push(object);
+          });
+          this.loaded = true;
+        });
+    },
+    indexToPercent(index) {
+      return Number((index - 100).toFixed(2));
+    },
+  },
+  mounted() {
+    this.requestData();
   },
 };
 </script>

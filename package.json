@@ -6,7 +6,7 @@
     "postinstall": "cd ./frontend && npm install",
     "prestart": "npm run build",
     "start": "DEBUG=b-rscase:* node ./bin/www",
-    "lint": "eslint . --ext .js --ext .json && cd ./frontend && npm run lint",
+    "lint": "eslint . --ext .js --ext .json",
     "pretest": "npm run lint",
     "test": "DEBUG=b-rscase:test:* NODE_ENV=test nyc mocha --timeout 5000 --exit --recursive && cd ./frontend && npm run test:unit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
