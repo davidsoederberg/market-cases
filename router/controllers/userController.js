@@ -9,7 +9,6 @@ exports.apiGet = (req, res) => {
       debug(chalk.red(error));
       res.status(400).end();
     } else {
-      debug('%o', docs);
       res.send(docs);
     }
   });
@@ -21,7 +20,6 @@ exports.apiGetOne = (req, res) => {
       debug(chalk.red(error));
       res.status(400).end();
     } else {
-      debug('%o', doc);
       res.send(doc);
     }
   });

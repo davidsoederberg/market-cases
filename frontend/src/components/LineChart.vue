@@ -3,44 +3,7 @@ import { Line } from 'vue-chartjs';
 
 export default {
   extends: Line,
-  props: {
-    chartData: {
-      type: Array,
-      required: false,
-    },
-    chartLabels: {
-      type: Array,
-      required: true,
-    },
-  },
-  data() {
-    return {
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              callback(value, index, values) {
-                return `${value}%`;
-              },
-            },
-            gridLines: {
-              display: true,
-            },
-          }],
-          xAxes: [{
-            gridLines: {
-              display: false,
-            },
-          }],
-        },
-        legend: {
-          display: false,
-        },
-        responsive: false,
-        maintainAspectRatio: true,
-      },
-    };
-  },
+  props: ['chartData', 'chartLabels', 'options'],
   mounted() {
     this.renderChart({
       labels: this.chartLabels,
@@ -56,6 +19,10 @@ export default {
           data: this.chartData,
         },
       ],
+      title: {
+        display: true,
+        text: 'Test',
+      }
     }, this.options);
   },
 };
