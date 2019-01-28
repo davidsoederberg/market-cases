@@ -61,8 +61,8 @@ export default {
           response.data.forEach((data) => {
             const object = {};
             object.name = data.name;
-            object.index = this.indexToPercent(data.dayData[data.dayData.length - 1].index);
-            object.today = data.intradayData.length === 0 ? 0.00 : this.indexToPercent(data.intradayData[data.intradayData.length - 1].index) - this.indexToPercent(data.dayData[data.dayData.length - 1].index);
+            object.index = this.indexToPercent(data.intradayData[data.dayData.length - 1].index);
+            object.today = data.intradayData.length === 0 ? 0.00 : (this.indexToPercent(data.intradayData[data.intradayData.length - 1].index) - this.indexToPercent(data.dayData[data.dayData.length - 1].index)).toFixed(2);
             this.mainItems.push(object);
           });
           this.loaded = true;
