@@ -62,7 +62,7 @@ export default {
             const object = {};
             object.name = data.name;
             object.index = this.indexToPercent(data.dayData[data.dayData.length - 1].index);
-            object.today = data.intradayData.length === 0 ? 0.00 : this.indexToPercent(data.dayData[data.dayData.length - 1].index);
+            object.today = data.intradayData.length === 0 ? 0.00 : this.indexToPercent(intradayData.index) - this.indexToPercent(data.dayData[data.dayData.length - 1].index);
             this.mainItems.push(object);
           });
           this.loaded = true;
