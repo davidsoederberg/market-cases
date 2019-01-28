@@ -51,7 +51,7 @@ describe('securities intraday update', () => {
             expect(doc.startingPrice).to.be.equal(1000);
             expect(doc.intradayData).to.be.length(1);
             expect(doc.intradayData[0].price).to.be.approximately(1300, 400);
-            expect(doc.intradayData[0].time).to.be.equal(moment().format('HH:mm'));
+            expect(doc.intradayData[0].time).to.be.equal(moment().add(1, 'hours').format('HH:mm'));
           }
         });
         await secIntraday.update();
@@ -64,7 +64,7 @@ describe('securities intraday update', () => {
             expect(doc.startingPrice).to.be.equal(1000);
             expect(doc.intradayData).to.be.length(2);
             expect(doc.intradayData[0].price).to.be.approximately(1300, 400);
-            expect(doc.intradayData[0].time).to.be.equal(moment().format('HH:mm'));
+            expect(doc.intradayData[0].time).to.be.equal(moment().add(1, 'hours').format('HH:mm'));
             done();
           }
         });
@@ -101,7 +101,7 @@ describe('securities intraday update', () => {
                         expect(doc.startingPrice).to.be.equal(1000);
                         expect(doc.intradayData).to.be.length(1);
                         expect(doc.intradayData[0].price).to.be.approximately(1300, 400);
-                        expect(doc.intradayData[0].time).to.be.equal(moment().format('HH:mm'));
+                        expect(doc.intradayData[0].time).to.be.equal(moment().add(1, 'hours').format('HH:mm'));
                       }
                     });
                     Security.findById(leo.id, (err, doc) => {
@@ -111,7 +111,7 @@ describe('securities intraday update', () => {
                       } else {
                         expect(doc.intradayData).to.be.length(1);
                         expect(doc.intradayData[0].price).to.be.approximately(40, 100);
-                        expect(doc.intradayData[0].time).to.be.equal(moment().format('HH:mm'));
+                        expect(doc.intradayData[0].time).to.be.equal(moment().add(1, 'hours').format('HH:mm'));
                       }
                     });
                     Security.findById(thq.id, (err, doc) => {
@@ -121,7 +121,7 @@ describe('securities intraday update', () => {
                       } else {
                         expect(doc.intradayData).to.be.length(1);
                         expect(doc.intradayData[0].price).to.be.approximately(150, 100);
-                        expect(doc.intradayData[0].time).to.be.equal(moment().format('HH:mm'));
+                        expect(doc.intradayData[0].time).to.be.equal(moment().add(1, 'hours').format('HH:mm'));
                       }
                     });
                     Security.findById(us.id, (err, doc) => {
@@ -132,7 +132,7 @@ describe('securities intraday update', () => {
                         expect(doc.name).to.be.equal('USD/SEK');
                         expect(doc.intradayData).to.be.length(1);
                         expect(doc.intradayData[0].price).to.be.approximately(9, 2);
-                        expect(doc.intradayData[0].time).to.be.equal(moment().format('HH:mm'));
+                        expect(doc.intradayData[0].time).to.be.equal(moment().add(1, 'hours').format('HH:mm'));
                       }
                     });
                     await secIntraday.update();
@@ -145,7 +145,7 @@ describe('securities intraday update', () => {
                         expect(doc.startingPrice).to.be.equal(1000);
                         expect(doc.intradayData).to.be.length(2);
                         expect(doc.intradayData[0].price).to.be.approximately(1300, 400);
-                        expect(doc.intradayData[0].time).to.be.equal(moment().format('HH:mm'));
+                        expect(doc.intradayData[0].time).to.be.equal(moment().add(1, 'hours').format('HH:mm'));
                       }
                     });
                     Security.findById(leo.id, (err, doc) => {
