@@ -18,9 +18,6 @@
             <td class="text-lg-left">{{ props.item.name }}</td>
             <td class="text-lg-center" :class="{ 'negative': props.item.index < 0,
             'positive': props.item.index > 0}">{{ props.item.index }}%</td>
-            <td class="text-lg-center" :class="{ 'negative': props.item.today < 0,
-            'positive': props.item.today > 0}">{{ props.item.today }}%</td>
-
           </tr>
         </template>
       </v-data-table>
@@ -46,9 +43,6 @@ export default {
         {
           align: 'center', text: 'YTD', value: 'index', width: 150,
         },
-        {
-          align: 'center', text: 'Dags', value: 'today', width: 150,
-        },
       ],
       mainItems: [],
       loaded: false,
@@ -61,8 +55,8 @@ export default {
           response.data.forEach((data) => {
             const object = {};
             object.name = data.name;
-            object.index = this.indexToPercent(data.intradayData[data.dayData.length - 1].index);
-            object.today = data.intradayData.length === 0 ? 0.00 : (this.indexToPercent(data.intradayData[data.intradayData.length - 1].index) - this.indexToPercent(data.dayData[data.dayData.length - 1].index)).toFixed(2);
+            object.index = this.indexToPercent(data.dayData[data.dayData.length - 1].index);
+            // object.today = data.intradayData.length === 0 ? 0.00 : (this.indexToPercent(data.intradayData[data.intradayData.length - 1].index) - this.indexToPercent(data.dayData[data.dayData.length - 1].index)).toFixed(2);
             this.mainItems.push(object);
           });
           this.loaded = true;
