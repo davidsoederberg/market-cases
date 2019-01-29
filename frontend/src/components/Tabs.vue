@@ -39,102 +39,48 @@
         :value="`tab-1`"
         :key="1"
       >
-        <v-layout row wrap >
-          <v-flex xs6>
-            <v-layout justify-center>
-              <line-chart v-if="loaded" :options="options" :chart-labels="labels[0]" :chart-data="data[0]"></line-chart>
-            </v-layout>
-          </v-flex>
-          <v-flex xs6>
-            <v-layout justify-center>
-              <line-chart v-if="loaded" :options="options2" :chart-labels="labelsIntraday[0]" :chart-data="dataIntraday[0]"></line-chart>
-            </v-layout>
-          </v-flex>
+        <v-layout justify-center>
+          <line-chart v-if="loaded" :options="options" :chart-labels="labels[0]" :chart-data="data[0]"></line-chart>
         </v-layout>
       </v-tab-item>
       <v-tab-item
         :value="`tab-2`"
         :key="2"
       >
-        <v-layout row wrap >
-          <v-flex xs6>
-            <v-layout justify-center>
-              <line-chart v-if="loaded" :options="options" :chart-labels="labels[1]" :chart-data="data[1]"></line-chart>
-            </v-layout>
-          </v-flex>
-          <v-flex xs6>
-            <v-layout justify-center>
-              <line-chart v-if="loaded" :options="options2" :chart-labels="labelsIntraday[1]" :chart-data="dataIntraday[1]"></line-chart>
-            </v-layout>
-          </v-flex>
+        <v-layout justify-center>
+          <line-chart v-if="loaded" :options="options" :chart-labels="labels[1]" :chart-data="data[1]"></line-chart>
         </v-layout>
       </v-tab-item>
       <v-tab-item
         :value="`tab-3`"
         :key="3"
       >
-        <v-layout row wrap >
-          <v-flex xs6>
-            <v-layout justify-center>
-              <line-chart v-if="loaded" :options="options" :chart-labels="labels[2]" :chart-data="data[2]"></line-chart>
-            </v-layout>
-          </v-flex>
-          <v-flex xs6>
-            <v-layout justify-center>
-              <line-chart v-if="loaded" :options="options2" :chart-labels="labelsIntraday[2]" :chart-data="dataIntraday[2]"></line-chart>
-            </v-layout>
-          </v-flex>
+        <v-layout justify-center>
+          <line-chart v-if="loaded" :options="options" :chart-labels="labels[2]" :chart-data="data[2]"></line-chart>
         </v-layout>
       </v-tab-item>
       <v-tab-item
         :value="`tab-4`"
         :key="4"
       >
-        <v-layout row wrap >
-          <v-flex xs6>
-            <v-layout justify-center>
-              <line-chart v-if="loaded" :options="options" :chart-labels="labels[3]" :chart-data="data[3]"></line-chart>
-            </v-layout>
-          </v-flex>
-          <v-flex xs6>
-            <v-layout justify-center>
-              <line-chart v-if="loaded" :options="options2" :chart-labels="labelsIntraday[3]" :chart-data="dataIntraday[3]"></line-chart>
-            </v-layout>
-          </v-flex>
+        <v-layout justify-center>
+          <line-chart v-if="loaded" :options="options" :chart-labels="labels[3]" :chart-data="data[3]"></line-chart>
         </v-layout>
       </v-tab-item>
       <v-tab-item
         :value="`tab-5`"
         :key="5"
       >
-        <v-layout row wrap >
-          <v-flex xs6>
-            <v-layout justify-center>
-              <line-chart v-if="loaded" :options="options" :chart-labels="labels[4]" :chart-data="data[4]"></line-chart>
-            </v-layout>
-          </v-flex>
-          <v-flex xs6>
-            <v-layout justify-center>
-              <line-chart v-if="loaded" :options="options2" :chart-labels="labelsIntraday[4]" :chart-data="dataIntraday[4]"></line-chart>
-            </v-layout>
-          </v-flex>
+        <v-layout justify-center>
+          <line-chart v-if="loaded" :options="options" :chart-labels="labels[4]" :chart-data="data[4]"></line-chart>
         </v-layout>
       </v-tab-item>
       <v-tab-item
         :value="`tab-6`"
         :key="6"
       >
-        <v-layout row wrap >
-          <v-flex xs6>
-            <v-layout justify-center>
-              <line-chart v-if="loaded" :options="options" :chart-labels="labels[5]" :chart-data="data[5]"></line-chart>
-            </v-layout>
-          </v-flex>
-          <v-flex xs6>
-            <v-layout justify-center>
-              <line-chart v-if="loaded" :options="options2" :chart-labels="labelsIntraday[5]" :chart-data="dataIntraday[5]"></line-chart>
-            </v-layout>
-          </v-flex>
+        <v-layout justify-center>
+          <line-chart v-if="loaded" :options="options" :chart-labels="labels[5]" :chart-data="data[5]"></line-chart>
         </v-layout>
       </v-tab-item>
     </v-tabs-items>
@@ -232,10 +178,10 @@ export default {
               this.labels[index].push(dayData.day);
               this.data[index].push(`${this.indexToPercent(dayData.index)}`);
             });
-            data.intradayData.forEach((intradayData) => {
+            /* data.intradayData.forEach((intradayData) => {
               this.labelsIntraday[index].push(intradayData.time);
               this.dataIntraday[index].push(`${this.indexToPercent(intradayData.index) - this.indexToPercent(data.dayData[data.dayData.length - 1].index)}`);
-            });
+            }); */
           });
           this.loaded = true;
         });

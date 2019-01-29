@@ -51,7 +51,7 @@ describe('securities after-close update', () => {
             expect(doc.startingPrice).to.be.equal(1000);
             expect(doc.dayData).to.be.length(1);
             expect(doc.dayData[0].price).to.be.approximately(1300, 400);
-            expect(doc.dayData[0].day).to.be.equal(moment().format('YYYY/MM/DD'));
+            expect(doc.dayData[0].day).to.be.equal(moment().subtract(1, 'days').format('YYYY/MM/DD'));
           }
         });
         await secAfterClose.update();
@@ -64,7 +64,7 @@ describe('securities after-close update', () => {
             expect(doc.startingPrice).to.be.equal(1000);
             expect(doc.dayData).to.be.length(2);
             expect(doc.dayData[0].price).to.be.approximately(1300, 400);
-            expect(doc.dayData[0].day).to.be.equal(moment().format('YYYY/MM/DD'));
+            expect(doc.dayData[0].day).to.be.equal(moment().subtract(1, 'days').format('YYYY/MM/DD'));
             done();
           }
         });
@@ -101,7 +101,7 @@ describe('securities after-close update', () => {
                         expect(doc.startingPrice).to.be.equal(1000);
                         expect(doc.dayData).to.be.length(1);
                         expect(doc.dayData[0].price).to.be.approximately(1300, 400);
-                        expect(doc.dayData[0].day).to.be.equal(moment().format('YYYY/MM/DD'));
+                        expect(doc.dayData[0].day).to.be.equal(moment().subtract(1, 'days').format('YYYY/MM/DD'));
                       }
                     });
                     Security.findById(leo.id, (err, doc) => {
@@ -111,7 +111,7 @@ describe('securities after-close update', () => {
                       } else {
                         expect(doc.dayData).to.be.length(1);
                         expect(doc.dayData[0].price).to.be.approximately(40, 100);
-                        expect(doc.dayData[0].day).to.be.equal(moment().format('YYYY/MM/DD'));
+                        expect(doc.dayData[0].day).to.be.equal(moment().subtract(1, 'days').format('YYYY/MM/DD'));
                       }
                     });
                     Security.findById(thq.id, (err, doc) => {
@@ -121,7 +121,7 @@ describe('securities after-close update', () => {
                       } else {
                         expect(doc.dayData).to.be.length(1);
                         expect(doc.dayData[0].price).to.be.approximately(150, 100);
-                        expect(doc.dayData[0].day).to.be.equal(moment().format('YYYY/MM/DD'));
+                        expect(doc.dayData[0].day).to.be.equal(moment().subtract(1, 'days').format('YYYY/MM/DD'));
                       }
                     });
                     Security.findById(us.id, (err, doc) => {
@@ -132,7 +132,7 @@ describe('securities after-close update', () => {
                         expect(doc.name).to.be.equal('USD/SEK');
                         expect(doc.dayData).to.be.length(1);
                         expect(doc.dayData[0].price).to.be.approximately(9, 2);
-                        expect(doc.dayData[0].day).to.be.equal(moment().format('YYYY/MM/DD'));
+                        expect(doc.dayData[0].day).to.be.equal(moment().subtract(1, 'days').format('YYYY/MM/DD'));
                       }
                     });
                     await secAfterClose.update();
@@ -145,7 +145,7 @@ describe('securities after-close update', () => {
                         expect(doc.startingPrice).to.be.equal(1000);
                         expect(doc.dayData).to.be.length(2);
                         expect(doc.dayData[0].price).to.be.approximately(1300, 400);
-                        expect(doc.dayData[0].day).to.be.equal(moment().format('YYYY/MM/DD'));
+                        expect(doc.dayData[0].day).to.be.equal(moment().subtract(1, 'days').format('YYYY/MM/DD'));
                       }
                     });
                     Security.findById(leo.id, (err, doc) => {
