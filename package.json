@@ -8,12 +8,13 @@
     "start": "DEBUG=b-rscase:* node ./bin/www",
     "lint": "eslint . --ext .js --ext .json",
     "pretest": "npm run lint",
-    "test": "DEBUG=b-rscase:test:* NODE_ENV=test nyc mocha --timeout 5000 --exit --recursive && cd ./frontend && npm run test:unit",
+    "test": "DEBUG=b-rscase:test:* NODE_ENV=test nyc mocha --timeout 5000 --exit --recursive",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "serve": "cd ./frontend && npm run serve",
     "build": "cd ./frontend && npm run build"
   },
   "dependencies": {
+    "acorn": "^6.1.1",
     "chalk": "^2.4.1",
     "cheerio": "^1.0.0-rc.2",
     "connect-history-api-fallback": "^1.6.0",
@@ -26,8 +27,8 @@
     "mongoose": "^5.4.1",
     "morgan": "~1.9.0",
     "node-cron": "^2.0.3",
-    "pug": "2.0.0-beta11",
     "request": "^2.88.0",
+    "stock-data.js": "^1.2.2",
     "stocks.js": "github:davidsoederberg/stocks.js"
   },
   "devDependencies": {
@@ -42,6 +43,6 @@
     "eslint-plugin-mocha": "^5.2.0",
     "eslint-plugin-vue": "^5.1.0",
     "mocha": "^5.2.0",
-    "nyc": "^13.1.0"
+    "nyc": "^13.3.0"
   }
 }

@@ -1,4 +1,4 @@
-const { expect } = require('chai');
+/* const { expect } = require('chai');
 const mongoose = require('mongoose');
 const debug = require('debug')('b-rscase:test:update:securities:intraday.test.js');
 const chalk = require('chalk');
@@ -180,3 +180,4 @@ describe('securities intraday update', () => {
       });
   });
 });
+ */
