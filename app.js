@@ -14,8 +14,6 @@ const mongoose = require('mongoose');
 const history = require('connect-history-api-fallback');
 const cronAfterClose = require('./lib/cron/after-close');
 const cronBeforeOpen = require('./lib/cron/before-open');
-// Removed to save API-calls
-// const cronIntraday = require('./lib/cron/intraday');
 
 const api = require('./router/routes/api');
 

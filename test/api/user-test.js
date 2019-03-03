@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint no-underscore-dangle: ["error", { "allow": ["_id"] }] */
 
-/* const chai = require('chai');
+const chai = require('chai');
 const chatHttp = require('chai-http');
 const mongoose = require('mongoose');
 const debug = require('debug')('b-rscase:test:user-test.js');
@@ -94,112 +94,4 @@ describe('api-user-route testing', () => {
         });
     });
   });
-  describe('POST /user', () => {
-    it('should return status 200 because name is provided', (done) => {
-      chai.request(server)
-        .post('/api/user')
-        .send({ name: 'David' })
-        .end((err, res) => {
-          expect(err).to.be.null;
-          expect(res).to.be.json;
-          expect(res.body.name).to.be.equal('David');
-          expect(res).to.be.status(200);
-          done();
-        });
-    });
-    it('should return status 400 because name is not provided', (done) => {
-      chai.request(server)
-        .post('/api/user')
-        .send({})
-        .end((err, res) => {
-          expect(res).to.be.status(400);
-          done();
-        });
-    });
-  });
-  describe('PUT /user/cases/:id', () => {
-    it('should return status 200 because a valid securities id is provided (long = true)',
-    (done) => {
-      const newSec = new Security();
-      newSec.name = 'Gold';
-      newSec.startingPrice = 100;
-      newSec.type = 2;
-      newSec.symbol = 'Gold';
-      newSec.save()
-        .then(() => {
-          const newUser = new User({ name: 'David' });
-          newUser.save()
-            .then(() => {
-              chai.request(server)
-                .put(`/api/user/cases/${newUser.id}`)
-                .send({ caseID: newSec.id, long: true })
-                .end((err, res) => {
-                  expect(res).to.be.status(200);
-                  expect(res.body.cases[0].case).to.be.equal(newSec.id);
-                  expect(res.body.cases[0].long).to.be.true;
-                  done();
-                });
-            });
-        });
-    });
-    it('should return status 200 because a valid securities id is provided (long = false)',
-    (done) => {
-      const newSec = new Security();
-      newSec.name = 'Gold';
-      newSec.startingPrice = 100;
-      newSec.type = 2;
-      newSec.symbol = 'Gold';
-      newSec.save()
-        .then(() => {
-          const newUser = new User({ name: 'David' });
-          newUser.save()
-            .then(() => {
-              chai.request(server)
-                .put(`/api/user/cases/${newUser.id}`)
-                .send({ caseID: newSec.id, long: false })
-                .end((err, res) => {
-                  expect(res).to.be.status(200);
-                  expect(res.body.cases[0].case).to.be.equal(newSec.id);
-                  expect(res.body.cases[0].long).to.be.false;
-                  done();
-                });
-            });
-        });
-    });
-    it('should return status 400 because a valid securities id is not provided', (done) => {
-      const newUser = new User({ name: 'David' });
-      newUser.save()
-        .then(() => {
-          chai.request(server)
-            .put(`/api/user/cases/${newUser.id}`)
-            .send({ caseID: 123 })
-            .end((err, res) => {
-              expect(res).to.be.status(400);
-              done();
-            });
-        });
-    });
-    it('should return status 400 because a valid user id is not provided', (done) => {
-      const newSec = new Security();
-      newSec.name = 'Gold';
-      newSec.startingPrice = 100;
-      newSec.type = 2;
-      newSec.symbol = 'Gold';
-      newSec.save()
-        .then(() => {
-          const newUser = new User({ name: 'David' });
-          newUser.save()
-            .then(() => {
-              chai.request(server)
-                .put('/api/user/cases/123')
-                .send({ caseID: newSec.id })
-                .end((err, res) => {
-                  expect(res).to.be.status(400);
-                  done();
-                });
-            });
-        });
-    });
-  });
-});
-*/
+})

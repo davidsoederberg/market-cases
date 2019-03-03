@@ -5,10 +5,10 @@
   "scripts": {
     "postinstall": "cd ./frontend && npm install",
     "prestart": "npm run build",
-    "start": "DEBUG=b-rscase:* node ./bin/www",
+    "start": "cross-env DEBUG=b-rscase:* node ./bin/www",
     "lint": "eslint . --ext .js --ext .json",
     "pretest": "npm run lint",
-    "test": "DEBUG=b-rscase:test:* NODE_ENV=test nyc mocha --timeout 5000 --exit --recursive",
+    "test": "cross-env DEBUG=b-rscase:test:* NODE_ENV=test nyc mocha --timeout 5000 --exit --recursive",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "serve": "cd ./frontend && npm run serve",
     "build": "cd ./frontend && npm run build"
@@ -35,6 +35,7 @@
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
     "coveralls": "^3.0.2",
+    "cross-env": "^5.2.0",
     "eslint": "^5.11.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-chai-expect": "^2.0.1",
