@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions */
-/* if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
@@ -19,16 +19,25 @@ describe('service tests', () => {
       expect(response.changePercent).to.not.exist;
       expect(response.symbol).to.exist;
     }).timeout(10000);
-    it('should return value 1 because SEK/SEK is the same', async () => {
-      const response = await currencyRate.currencyRate('SEK', 'SEK');
-      expect(response.price).to.be.to.equal(1);
-      expect(response.name).to.be.equal('SEK/SEK');
+    it('should return a value because EUR/SEK exists', async () => {
+      const response = await currencyRate.currencyRate('EUR', 'SEK');
+      expect(response.price).to.approximately(10, 2);
+      expect(response.name).to.be.equal('EUR/SEK');
       expect(response.changePercent).to.not.exist;
       expect(response.symbol).to.exist;
     }).timeout(10000);
     it('should return error because abc123/xyz does not exist', async () => {
       try {
         await currencyRate.currencyRate('abc123', 'xyz');
+        expect(true).to.be.false;
+      } catch (err) {
+        expect(err).to.exist;
+        expect(err.message).to.be.equal('Incorrect currency pair');
+      }
+    });
+    it('should return error because USD/xyz does not exist', async () => {
+      try {
+        await currencyRate.currencyRate('USD', 'xyz');
         expect(true).to.be.false;
       } catch (err) {
         expect(err).to.exist;
@@ -97,4 +106,4 @@ describe('service tests', () => {
       expect(response.symbol).to.exist;
     });
   });
-}); */
+});

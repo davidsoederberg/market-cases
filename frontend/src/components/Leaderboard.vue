@@ -3,7 +3,8 @@
     <v-layout
       text-xs
       justify-center
-    align="center">
+      align="center"
+    >
       <v-data-table v-if="loaded" :headers="mainHeaders"
                     :items="mainItems"
                     header-key="index"

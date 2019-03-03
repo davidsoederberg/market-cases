@@ -13,7 +13,6 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 const history = require('connect-history-api-fallback');
 const cronAfterClose = require('./lib/cron/after-close');
-// const cronIntraday = require('./lib/cron/intraday');
 const cronBeforeOpen = require('./lib/cron/before-open');
 
 const api = require('./router/routes/api');
@@ -28,7 +27,6 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 cronAfterClose.start();
-// cronIntraday.start();
 cronBeforeOpen.start();
 debug(chalk.green('Cron services started'));
 

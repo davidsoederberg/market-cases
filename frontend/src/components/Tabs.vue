@@ -8,79 +8,19 @@
         slider-color="teal"
         centered
         v-model="active_tab">
-        <v-tab
-          :key="1"
-          :href="`#tab-1`"
-        >David</v-tab>
-        <v-tab
-          :key="2"
-          :href="`#tab-2`"
-        >Jakob</v-tab>
-        <v-tab
-          :key="3"
-          :href="`#tab-3`"
-        >Tobias</v-tab>
-        <v-tab
-          :key="4"
-          :href="`#tab-4`"
-        >Linus</v-tab>
-        <v-tab
-          :key="5"
-          :href="`#tab-5`"
-        >Oscar</v-tab>
-        <v-tab
-          :key="6"
-          :href="`#tab-6`"
-        >Andreas</v-tab>
+        <v-tab v-for="index in 6"
+          :key="index"
+          :href="`#tab-${index}`"
+        >{{names[index - 1]}}</v-tab>
       </v-tabs>
     </v-layout>
     <v-tabs-items v-model="active_tab">
       <v-tab-item
-        :value="`tab-1`"
-        :key="1"
+        v-for="index in 6" :value="`tab-${index}`"
+        :key="`${index}`"
       >
         <v-layout justify-center>
-          <line-chart v-if="loaded" :options="options" :chart-labels="labels[0]" :chart-data="data[0]"></line-chart>
-        </v-layout>
-      </v-tab-item>
-      <v-tab-item
-        :value="`tab-2`"
-        :key="2"
-      >
-        <v-layout justify-center>
-          <line-chart v-if="loaded" :options="options" :chart-labels="labels[1]" :chart-data="data[1]"></line-chart>
-        </v-layout>
-      </v-tab-item>
-      <v-tab-item
-        :value="`tab-3`"
-        :key="3"
-      >
-        <v-layout justify-center>
-          <line-chart v-if="loaded" :options="options" :chart-labels="labels[2]" :chart-data="data[2]"></line-chart>
-        </v-layout>
-      </v-tab-item>
-      <v-tab-item
-        :value="`tab-4`"
-        :key="4"
-      >
-        <v-layout justify-center>
-          <line-chart v-if="loaded" :options="options" :chart-labels="labels[3]" :chart-data="data[3]"></line-chart>
-        </v-layout>
-      </v-tab-item>
-      <v-tab-item
-        :value="`tab-5`"
-        :key="5"
-      >
-        <v-layout justify-center>
-          <line-chart v-if="loaded" :options="options" :chart-labels="labels[4]" :chart-data="data[4]"></line-chart>
-        </v-layout>
-      </v-tab-item>
-      <v-tab-item
-        :value="`tab-6`"
-        :key="6"
-      >
-        <v-layout justify-center>
-          <line-chart v-if="loaded" :options="options" :chart-labels="labels[5]" :chart-data="data[5]"></line-chart>
+          <line-chart v-if="loaded" :options="options" :chart-labels="labels[index - 1]" :chart-data="data[index - 1]"></line-chart>
         </v-layout>
       </v-tab-item>
     </v-tabs-items>
@@ -99,6 +39,7 @@ export default {
   },
   data() {
     return {
+      names: ["David", "Jakob", "Tobias", "Linus", "Oscar", "Andreas"],
       labels: [[], [], [], [], [], []],
       data: [[], [], [], [], [], []],
       labelsIntraday: [[],[],[],[],[],[]],

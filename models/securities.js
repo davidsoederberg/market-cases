@@ -47,5 +47,4 @@ const securities = new Schema({
   }],
 });
 
-const securitiesModel = mongoose.model('Securities', securities);
-module.exports = securitiesModel;
+module.exports = mongoose.model('Securities', securities);

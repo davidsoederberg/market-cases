@@ -3,6 +3,6 @@ type: JSON object
 {
     name: String,
     price: Number,
-    changePercent: Number (can be set to undefined),
+    changePercent: Number,
     symbol: String
 }

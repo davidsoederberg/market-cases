@@ -67,3 +67,6 @@ typings/
 
 # Historydata fix
 history/
+
+# Building dist
+frontend/dist
